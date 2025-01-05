@@ -3,7 +3,7 @@ import React from 'react'
 function Footer() {
   return (
     <>
-    <div className='mt-40 grid  lg:grid-cols-4  md:grid-cols-3  border-t p-4 sm:p-10'>
+    <div className='mt40 grid  lg:grid-cols-4  md:grid-cols-3  border-t p-4 sm:p-10'>
         <div className='sm:ml-10'>
         <h1 className='text-2xl font-bold'>Furniro.</h1>
         <p className='text-gray-400 mt-6'>400 universities Drives 200 coral</p>
@@ -34,8 +34,8 @@ function Footer() {
 <div className='lg:ml-60'>
     <p className='text-gray-500 sm:mt-4 mt-8'>Newsletters</p>
     <div className='flex sm:mt-10 mt-2'>
-    <input type='email' placeholder='Enter your email address' className='underline'></input>
-    <p className='underline'>Subscribe</p>
+    <input type='email' placeholder='Enter your email address' className='border-b border-black -ml-4'></input>
+    <p className='border-b border-black'>Subscribe</p>
     </div>
 </div>
     </div>

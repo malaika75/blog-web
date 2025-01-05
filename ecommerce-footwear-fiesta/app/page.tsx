@@ -1,8 +1,9 @@
 "use client"
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
-import gsap from 'gsap'
 import { useState , useRef } from 'react'
+
 
 
 
@@ -26,35 +27,19 @@ function page() {
 
       <div>
         <Image 
-        // src='https://i.imgur.com/N6BIqPl.png'
-        // src='https://www.modora.co.uk/cdn/shop/collections/Footwear.webp?v=1691129404&width=1920' 
         src="https://i.imgur.com/R1cgufT.png"
-        // src="https://i.imgur.com/diMGCCr.jpeg"
-        // src="https://i.imgur.com/PoktLBV.jpeg"
-        // src="https://i.imgur.com/0tiBeNA.jpeg"
         className='lg:w-11/12 lg:h-[400px] mt-20 mx-auto mb-10' height={900} width={900} alt='shoes' unoptimized quality={100} placeholder='empty'></Image>
         
-{/* <Image 
-        // src='https://i.imgur.com/N6BIqPl.png'
-        // src='https://www.modora.co.uk/cdn/shop/collections/Footwear.webp?v=1691129404&width=1920' 
-        src="https://i.imgur.com/diMGCCr.jpeg"
-        className='lg:w-9/12 lg:h-[400px] mt-20 mx-auto mb-10' height={900} width={900} alt='shoes' unoptimized quality={100} placeholder='empty'></Image>
-        
-
-        
-      <Image 
-        src='https://i.imgur.com/N6BIqPl.png'
-        // src='https://www.modora.co.uk/cdn/shop/collections/Footwear.webp?v=1691129404&width=1920' 
-        className='lg:w-9/12 lg:h-[400px] mt-20 mx-auto mb-10' height={900} width={900} alt='shoes' unoptimized quality={100} placeholder='empty'></Image> */}
-      </div>
+        </div>
 
     <h1 className='text-center text-4xl font-semibold py-20 bg-gray-500'>Featured products</h1>
     <div className='bg-white h-[400px] py-20'>
       <div className='ml8 mx-auto grid lg:grid-cols-3 grid-cols-2 gap-5 mb-20'>
 
 <div>
+<Link href='/products/${product.id}'>
       <Image src={ishover === 1 ? "https://i.imgur.com/2NWJvNR.jpeg" : "https://i.imgur.com/oeY1Ah3.jpeg"}alt='heels' height={500} width={500} className='object-cover shadow-2xl shadow-black rounded border-4 border-black'
-       onMouseEnter= {()=> handleMouseEnter(1) } onMouseLeave={handleMouseLeave}></Image>
+       onMouseEnter= {()=> handleMouseEnter(1) } onMouseLeave={handleMouseLeave}></Image></Link>
        <p className='mt-10 text-lg bg-gray-800 text-white mx-3'>Rs:3000</p>
 </div>
 

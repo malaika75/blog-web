@@ -50,7 +50,7 @@ return (
               <p className="leading-relaxed mb-3">{post.summary}</p>
               <div className="flex items-center flex-wrap">
                 <Link href= {`/blogs/${post.slug}`}>
-                <button className="text-blue-900 inline-flex items-center md:mb-2 lg:mb-0">
+                <button className="text-blue-900 inline-flex items-center md:mb-2 lg:mb-0 font-semibold">
                   Read More
                   <svg
                     className="w-4 h-4 ml-2"

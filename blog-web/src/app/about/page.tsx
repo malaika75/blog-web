@@ -13,7 +13,7 @@ function page() {
         Our Team
       </h1>
       <p className="lg:w-2/3 mx-auto leading-relaxed text-base">
-      Welcome to TechSphere! Our mission is to simplify technology for everyone by delivering insightful blogs, latest trends, and practical tips. Whether you're a tech enthusiast or just starting your journey, we&rsquo;re here to guide you every step of the way!.
+      Welcome to TechSphere! Our mission is to simplify technology for everyone by delivering insightful blogs, latest trends, and practical tips. Whether you&apos;re a tech enthusiast or just starting your journey, we&rsquo;re here to guide you every step of the way!.
       </p>
     </div>
     <div className="flex flex-wrap -m-2">

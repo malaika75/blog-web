@@ -1,10 +1,22 @@
 import React from 'react'
 import {client} from '@/sanity/lib/client'
-import { PortableText } from '@portabletext/react';
+import { PortableText , PortableTextReactComponents} from '@portabletext/react';
 import { urlFor } from '@/sanity/lib/image';
+import Image from 'next/image';
 
+interface Post {
+  content: Array<
+    | { _type: 'block'; children: Array<{ text: string }>; style: string } // Text Block
+    | { _type: 'image'; asset: { _ref: string }; alt?: string } // Image Block
+  >
+}
 
-
+interface ImageType {
+  asset: {
+    _ref: string
+  }
+  alt?: string
+}
 
 async function Blogpage({params}:{params:{slug:string}}) {
 
@@ -14,32 +26,39 @@ async function Blogpage({params}:{params:{slug:string}}) {
         content
       }`
 
-const post = await client.fetch(query, {slug})
-console.log(post.content);
+const post:Post = await client.fetch(query, {slug})
 
 
-const serializers = {
+
+const serializers: Partial<PortableTextReactComponents> = {
   types: {
-    image: ({ value }: { value: any }) => (
-      <img
+    image: ({ value }: { value: ImageType}) => (
+      <Image
         src={urlFor(value.asset).width(800).url()} // Generate image URL with desired width
         alt={value.alt || 'Post Image'}
         style={{ maxWidth: '100%', borderRadius: '8px', margin: '20px 0' }}
-      />
+        height={100}
+        width={100}></Image>
     ),
   },
-  block: {
-    h1: ({ children }: any) => <h1 style={{ fontSize: '2rem', marginBottom: '1rem' }}>{children}</h1>,
-    h2: ({ children }: any) => <h2 style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>{children}</h2>,
-    h3: ({ children }: any) => (
+   block: {
+    h1: ({ children }: { children?: React.ReactNode }) => (
+      <h1 style={{ fontSize: '2rem', marginBottom: '1rem' }}>{children}</h1>
+    ),
+    h2: ({ children }: { children?: React.ReactNode }) => (
+      <h2 style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>{children}</h2>
+    ),
+    h3: ({ children }: { children?: React.ReactNode }) => (
       <h3 style={{ fontSize: '1.25rem', marginBottom: '1rem', fontWeight: 'bold' }}>{children}</h3>
     ),
-    h4: ({ children }: any) => (
+    h4: ({ children }: { children?: React.ReactNode }) => (
       <h4 style={{ fontSize: '1rem', marginBottom: '1rem', fontWeight: 'bold' }}>{children}</h4>
     ),
-    normal: ({ children }: any) => <p style={{ lineHeight: '1.6', marginBottom: '1rem' }}>{children}</p>,
+    normal: ({ children }: { children?: React.ReactNode }) => (
+      <p style={{ lineHeight: '1.6', marginBottom: '1rem' }}>{children}</p>
+    ),
   },
-}
+};
 
   return (
     <>

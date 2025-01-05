@@ -3,6 +3,18 @@ import {client} from "@/sanity/lib/client"
 import Link from "next/link";
 import { urlFor } from '@/sanity/lib/image';
 
+interface postType {
+  summary:string,
+  headline:string,
+  title:string,
+  slug:string
+  image:{
+    _ref:string
+  },
+ alt?:string
+}
+
+
 export default async function Home() {
 
   const query = `*[_type == 'post']{
@@ -23,22 +35,24 @@ return (
 <div className='w-9/12 sm:h-[350px] bg-blue-950 lg:mx-40 md:mx-16 md:top-[400px] top-[260px] mx-12 absolute xl:top-[550px] border-2 border-gray-100 border-opacity-20 text-white shadow-2xl shadow-blue-950 rounded-md -mt-10 sm:mx-20'>
     <p className='text-center text-semibold text-2xl p-4 sm:mt-6 font-mono'>TechSphere</p>
     <p className='w-9/12 mx-auto sm:mt-4 text-semibold text-center'>Explore the world of technology with TechSphere where innovation meets inspiration.</p>
-    <p className='hidden sm:flex text-center mx-auto '>Discover blogs that ignite curiosity and empower ideas! From the latest breakthroughs in tech to practical insights for everyday life, TechSphere is your trusted guide in this ever-evolving digital era. Join us as we decode complex trends, share expert perspectives, and bring you closer to the future of technology. At TechSphere, we don't just talk about innovation we live it.</p>
+    <p className='hidden sm:flex text-center mx-auto '>Discover blogs that ignite curiosity and empower ideas! From the latest breakthroughs in tech to practical insights for everyday life, TechSphere is your trusted guide in this ever evolving digital era. Join us as we decode complex trends, share expert perspectives, and bring you closer to the future of technology. At TechSphere, we don't just talk about innovation we live it.</p>
     </div>
 
     <h1 className='text-4xl font-serif font-semibold xl:mt-40 mt-48 md:mt-56 sm:mx-20 mx-4'>Resent posts</h1>
     <section className="text-gray-600 body-font">
   <div className="container px-5 py-24 mx-auto">
     <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-      {post.map((post: any) => (
+      {post.map((post: postType) => (
         <div key={post.slug} className="p-4">
           <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
             {post.image && (
-              <img
+              <Image
                 src={urlFor(post.image).width(400).url()} // Set image width dynamically
                 alt={post.title}
                 className="lg:h-48 md:h-36 w-full object-cover object-center"
-              />
+                height={100}
+                width={100}
+              ></Image>
             )}
             <div className="p-6">
               <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">

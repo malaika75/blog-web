@@ -1,4 +1,4 @@
-export default{
+const postSchema = {
     name: 'post',
     title: 'post',
     type: 'document',
@@ -14,26 +14,22 @@ export default{
         title:'SLug',
         options:{
             source:'title'
+        }
         },
-        validation: (Rule:any) => Rule.required()
-       },
        {
         name:'headline',
         type:'string',
-        title: 'headline',
-        validation: (Rule:any) => Rule.required()
-       },
+        title: 'headline'
+        },
        {
         name:'summary',
         type:'text',
-        title: 'summary',
-        validation: (Rule:any) => Rule.required()
+        title: 'summary'
        },
        {
         name:'image',
         type:'image',
-        title: 'image',
-        validation: (Rule:any) => Rule.required()
+        title: 'image'
        },
        {
         name:'content',
@@ -56,3 +52,4 @@ export default{
        
     ]
 }
+export default postSchema

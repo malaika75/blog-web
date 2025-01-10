@@ -3,8 +3,10 @@ import {client} from '@/sanity/lib/client'
 import { PortableText , PortableTextReactComponents} from '@portabletext/react';
 import { urlFor } from '@/sanity/lib/image';
 import Image from 'next/image';
+import Comments from '@/components/Comments';
 
 interface Post {
+  _id: string;
   content: Array<
     | { _type: 'block'; children: Array<{ text: string }>; style: string } // Text Block
     | { _type: 'image'; asset: { _ref: string }; alt?: string } // Image Block
@@ -23,6 +25,7 @@ async function Blogpage({params}:{params:{slug:string}}) {
     const {slug} = params;
 
     const query= `*[_type == "post" && slug.current == $slug][0]{
+        _id,
         content
       }`
 
@@ -36,9 +39,12 @@ const serializers: Partial<PortableTextReactComponents> = {
       <Image
         src={urlFor(value.asset).width(800).url()} // Generate image URL with desired width
         alt={value.alt || 'Post Image'}
-        style={{ maxWidth: '100%', borderRadius: '8px', margin: '20px 0' }}
-        height={100}
-        width={100}></Image>
+        style={{ maxWidth: '100%', borderRadius: '8px', margin: '20px 0' ,}}
+        height={400}
+        width={900}
+        quality={100}
+        unoptimized className=''>
+          </Image>
     ),
   },
    block: {
@@ -60,11 +66,15 @@ const serializers: Partial<PortableTextReactComponents> = {
   },
 };
 
+
   return (
     <>
-    <div style={{ padding: '20px' }}>
+    <div style={{ marginLeft: '20%' , marginRight: '20%'  }}>
         <PortableText value={post.content} components={serializers} />
     </div>
+
+    <Comments postId={post._id} />
+
     </>
   )
 }

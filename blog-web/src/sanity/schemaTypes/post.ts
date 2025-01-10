@@ -47,7 +47,6 @@ const postSchema = {
             },
         },
     ],
-        validation: (Rule:any) => Rule.required()
        },
        
     ]
